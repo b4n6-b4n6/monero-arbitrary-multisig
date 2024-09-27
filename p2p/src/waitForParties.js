@@ -17,7 +17,7 @@ const waitForParties = async (partyHosts, waitFor) => {
     const availablePartyHosts = await getAvailableParties(partyHosts);
 
     if (availablePartyHosts.length < waitFor) {
-      console.log("Cannot connect to parties");
+      console.log("Cannot connect to enough parties");
       console.log("Retrying in 10 seconds");
       await sleep(10 * 1000);
       continue;

@@ -46,6 +46,7 @@ This will open `monero-wallet-rpc` and `tor` (not as daemon)
 ./p2p/binaries/multisig-open mywallet3
 ...
 ```
+This needs to be left open for the proceeding steps
 
 ### Create multisig config file
 
