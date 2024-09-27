@@ -25,6 +25,6 @@ export const doMultisigImport = async (config) => {
 
   await wallet.importMultisigHex(multisigHexes);
 
-  console.log(`Your unlocked balance is ${chalk.magenta(fromPiconero(await wallet.getUnlockedBalance()))} XMR`);
+  console.log(`Your total balance is ${chalk.magenta(fromPiconero(await wallet.getBalance()))} XMR`);
   console.log(`Your locked balance is ${chalk.magenta(fromPiconero(await wallet.getUnlockedBalance()))} XMR`);
 };
