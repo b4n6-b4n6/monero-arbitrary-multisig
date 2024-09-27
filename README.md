@@ -96,5 +96,5 @@ The party that wants to spend executes
 
 The other parties who wish to sign execute
 ```
-./p2p/binaries/multisig-spend --wallet-name mywallet1 --config-path multisig-config.yaml
+./p2p/binaries/multisig-spend --wallet-name mywallet2 --config-path multisig-config.yaml
 ```
