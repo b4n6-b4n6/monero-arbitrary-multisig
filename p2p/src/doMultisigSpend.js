@@ -49,6 +49,8 @@ export const doMultisigSpend = async (config) => {
     process.exit(1);
   }
 
+  // TODO display fee here
+
   let multisigHex = tx.getTxSet().getMultisigTxHex();
   for (let host of partyHosts) {
     multisigHex = await myFetch(host, "sign_multisig", multisigHex, config);

@@ -23,7 +23,7 @@ async function collectAndWriteData() {
     console.log("I am the config creation wizard 🪄");
 
     const path = await askQuestion("Config file path");
-    const secret = await askQuestion("Secret");
+    const secret = await askQuestion("Secret"); // TODO auto-generate secure secret
     const M = Number(await askQuestion("M"));
     const N = await askQuestion("N");
 
