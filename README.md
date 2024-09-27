@@ -51,7 +51,7 @@ This will open `monero-wallet-rpc` and `tor` (not as daemon)
 
 This is an interactive wizard and will ask  
 * multisig config creation path
-* shared secret password
+* shared secret password (used for authentication when connecting to other parties)
 * M and N to use
 * other parties wallet names and onion+port identifiers
 ```
