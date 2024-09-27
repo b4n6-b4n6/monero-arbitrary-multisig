@@ -21,4 +21,4 @@ if (config.spendAddress && config.spendAmount) {
   console.log("Waiting for multisig spend requests!");
 }
 
-console.log("Keeping server open, press CTRL+C to quite");
+console.log("Keeping server open, press CTRL+C to quit");

@@ -17,4 +17,4 @@ createServer({ ...config, wallet })
 await doMultisigSetup({ ...config, wallet });
 
 console.log("Successfully setup multisig!");
-console.log("Keeping server open, press CTRL+C to quite");
+console.log("Keeping server open, press CTRL+C to quit");

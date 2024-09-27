@@ -11,4 +11,4 @@ createServer({ ...config, wallet });
 await doMultisigImport({ ...config, wallet });
 
 console.log("Successfully imported multisig data!");
-console.log("Keeping server open, press CTRL+C to quite");
+console.log("Keeping server open, press CTRL+C to quit");
