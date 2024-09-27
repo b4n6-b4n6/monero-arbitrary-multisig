@@ -80,7 +80,7 @@ This is required before and after every spend
 ./p2p/binaries/multisig-import --wallet-name mywallet3 --config-path multisig-config.yaml
 ...
 ```
-Locked and unlocked balance are also displayed here
+Total and unlocked balance are also displayed here
 
 ### Spend
 When your deposit has been confirmed you can spend  
