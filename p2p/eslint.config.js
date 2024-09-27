@@ -20,3 +20,4 @@ export default [
     }
   },
 ];
+// TODO: how do i get eslint to lint js files in binaries folder
