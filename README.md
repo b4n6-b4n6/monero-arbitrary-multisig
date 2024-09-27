@@ -44,9 +44,9 @@ Do note down the **onion + port** for each wallet as these are required for next
 
 This will open `monero-wallet-rpc` and `tor` (not as daemon)
 ```
-./p2p/binaries/multisig-open mywallet1
-./p2p/binaries/multisig-open mywallet2
-./p2p/binaries/multisig-open mywallet3
+./binaries/wallet-open mywallet1
+./binaries/wallet-open mywallet2
+./binaries/wallet-open mywallet3
 ...
 ```
 This needs to be left open for the proceeding steps
