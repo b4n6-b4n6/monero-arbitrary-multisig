@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <wallet name>"
+  exit 1
+fi
+
+WALLET_NAME=$1
+
+if [ ! -d "./wallets/$WALLET_NAME" ]; then
+  echo "Wallet does not exist"
+  exit 1
+fi
+
+WALLET_PASSWORD=""
+
+monero-wallet-cli \
+  --wallet-file ./wallets/$WALLET_NAME \
+  --log-file ./wallets/$WALLET_NAME/monero-wallet-cli.log \
+  --password "$WALLET_PASSWORD"
+

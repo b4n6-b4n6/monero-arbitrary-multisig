@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+import { createServer } from "../src/createServer/createServer.js";
+import { connectToMyWalletRpc } from "../src/connectToMyWalletRpc.js";
+import { doMultisigSpend } from "../src/doMultisigSpend.js";
+import { getSpendConfig } from "../src/getConfig/getSpendConfig.js";
+import chalk from "chalk";
+
+const config = getSpendConfig();
+const wallet = await connectToMyWalletRpc(config);
+createServer({ ...config, wallet });
+
+if (config.spendAddress && config.spendAmount) {
+  console.log("Spending");
+  console.log(`Address: ${chalk.magenta(config.spendAddress)}`);
+  console.log(`Amount: ${chalk.magenta(config.spendAmount)} XMR`);
+
+  await doMultisigSpend({ ...config, wallet });
+
+  console.log("Successfully spent multisig!");
+} else {
+  console.log("Waiting for multisig spend requests!");
+}
+
+console.log("Keeping server open, press CTRL+C to quite");

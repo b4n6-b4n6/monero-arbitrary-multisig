@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <wallet name>"
+  exit 1
+fi
+
+WALLET_NAME=$1
+
+if [ ! -d "./wallets/$WALLET_NAME" ]; then
+  echo "Wallet does not exist"
+  exit 1
+fi
+
+tmux new-session \
+  "./binaries/wallet-open-rpc $WALLET_NAME; read" \
+  ";" \
+  split-window \
+  "./binaries/wallet-open-tor $WALLET_NAME; read"

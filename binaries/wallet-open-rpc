@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <wallet name>"
+  exit 1
+fi
+
+WALLET_NAME=$1
+
+if [ ! -d "./wallets/$WALLET_NAME" ]; then
+  echo "Wallet does not exist"
+  exit 1
+fi
+
+WALLET_PASSWORD=""
+PORT=$(cat ./wallets/$WALLET_NAME/port-rpc)
+
+monero-wallet-rpc \
+  --wallet-file ./wallets/$WALLET_NAME/wallet \
+  --disable-rpc-login \
+  --non-interactive \
+  --rpc-bind-port $PORT \
+  --log-file ./wallets/$WALLET_NAME/monero-wallet-rpc.log \
+  --password "$WALLET_PASSWORD"

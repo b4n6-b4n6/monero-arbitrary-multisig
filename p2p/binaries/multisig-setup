@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+import { createServer } from "../src/createServer/createServer.js";
+import { connectToMyWalletRpc } from "../src/connectToMyWalletRpc.js";
+import { doMultisigSetup } from "../src/doMultisigSetup.js";
+import { getConfig } from "../src/getConfig/getConfig.js";
+
+const config = getConfig();
+const wallet = await connectToMyWalletRpc(config);
+
+const info = await wallet.getMultisigInfo();
+if (!(info.isMultisig === false && info.isReady === false)) {
+  throw new Error("Wallet is already multisig");
+}
+
+createServer({ ...config, wallet })
+
+await doMultisigSetup({ ...config, wallet });
+
+console.log("Successfully setup multisig!");
+console.log("Keeping server open, press CTRL+C to quite");

@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+import YAML from "yaml";
+import fs from "fs";
+import readline from "readline";
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function askQuestion(question) {
+  question = `${question}: `;
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      resolve(answer);
+    });
+  });
+}
+
+async function collectAndWriteData() {
+  try {
+    // Ask for user input
+    console.log("I am the config creation wizard 🪄");
+
+    const path = await askQuestion("Config file path");
+    const secret = await askQuestion("Secret");
+    const M = Number(await askQuestion("M"));
+    const N = await askQuestion("N");
+
+    const parties = {};
+    for (let i = 0; i < N; i++) {
+      console.log(`Party #${i + 1}`);
+
+      const name = await askQuestion("Name");
+      const host = await askQuestion("Host");
+      parties[name] = host;
+    }
+
+    // Data object to be written to JSON
+    const data = {
+      secret,
+      M,
+      parties,
+    };
+
+    // Write data to file named "output.json"
+    fs.writeFileSync(path, YAML.stringify(data));
+  } catch (error) {
+    console.error("An error occurred:", error);
+  } finally {
+    // Close the readline interface
+    rl.close();
+  }
+}
+
+// Run the function
+collectAndWriteData();

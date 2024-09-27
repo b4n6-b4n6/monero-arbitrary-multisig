@@ -1,0 +1,61 @@
+#!/bin/bash
+
+print_blue() {
+  echo -e "\e[36m$@\e[0m"
+  echo
+}
+
+
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <wallet name>"
+  exit 1
+fi
+
+WALLET_NAME=$1
+WALLET_PASSWORD=""
+
+HS_PORT=$(( 38000 + RANDOM % 1000 ))
+RPC_PORT=$(( 39000 + RANDOM % 1000 ))
+WALLET_PATH=./wallets/$WALLET_NAME
+TORRC_PATH=$WALLET_PATH/torrc
+
+print_blue Making wallet directory
+mkdir $WALLET_PATH || exit
+
+print_blue Writing hs and rpc ports 
+echo $RPC_PORT > $WALLET_PATH/port-rpc
+echo $HS_PORT > $WALLET_PATH/port-hs
+
+print_blue Making monero wallet
+monero-wallet-cli \
+  --generate-new-wallet $WALLET_PATH/wallet \
+  --mnemonic-language English \
+  --log-file $WALLET_PATH/monero-wallet-cli.log \
+  --password "$WALLET_PASSWORD" \
+  --command save
+
+print_blue Making tor conf
+cat << EOF > $WALLET_PATH/torrc
+SocksPort 0
+DataDirectory $WALLET_PATH/tor-data
+HiddenServiceDir $WALLET_PATH/hs
+HiddenServicePort $HS_PORT 127.0.0.1:$HS_PORT
+EOF
+
+print_blue Making hidden service
+init_tor () {
+  tor -f $TORRC_PATH &
+  tor_pid=$!
+  sleep 5
+  kill $tor_pid
+}
+init_tor
+
+# Yay!
+echo
+echo
+echo
+
+print_blue Wallet inited successfully
+print_blue Your hidden service is $(cat $WALLET_PATH/hs/hostname):$HS_PORT
