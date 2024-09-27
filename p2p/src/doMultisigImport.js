@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { myFetch } from "./myFetch.js";
 import { waitForMinParties } from "./waitForParties.js";
 import { fromPiconero } from "./utils/fromPiconero.js";
@@ -24,6 +25,6 @@ export const doMultisigImport = async (config) => {
 
   await wallet.importMultisigHex(multisigHexes);
 
-  console.log(`Your unlocked balance is ${fromPiconero(await wallet.getUnlockedBalance())} XMR`);
-  console.log(`Your locked balance is ${fromPiconero(await wallet.getBalance())} XMR`);
+  console.log(`Your unlocked balance is ${chalk.magenta(fromPiconero(await wallet.getUnlockedBalance()))} XMR`);
+  console.log(`Your locked balance is ${chalk.magenta(fromPiconero(await wallet.getUnlockedBalance()))} XMR`);
 };
