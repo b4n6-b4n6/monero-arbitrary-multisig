@@ -1,8 +1,8 @@
 # Monero Arbitrary Multisig Wrapper
 
-General purpose any M-N multisig monero wallet wrapper for [getmonero.org](https://getmonero.org) wallet  
+General purpose any M-of-N multisig monero wallet wrapper for [getmonero.org](https://getmonero.org) wallet  
 Uses tor and hidden services to create serverless peer to peer connections for multisig  
-With this you can easily create any M-N multisig setup, for example
+With this you can easily create any M-of-N multisig setup, for example
 
 * 2-of-3: collaborative decision-making - requres 2 of 3 parties to sign off on every transaction
 * 3-of-5, 5-of-7: treasury management - requres multiple parties to sign off on every transaction
