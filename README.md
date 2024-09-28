@@ -58,7 +58,7 @@ This is an interactive wizard and will ask
 * shared secret password (used for authentication when connecting to other parties)
 * M to use (number of parties required to sign for spending)
 * N to use (number of total parties)
-* other parties wallet names and onion+port identifiers
+* parties' wallet names and onion + port identifiers
 ```
 ./p2p/binaries/config-create
 ```
