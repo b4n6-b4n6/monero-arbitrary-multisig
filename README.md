@@ -56,7 +56,8 @@ This needs to be left open for the proceeding steps
 This is an interactive wizard and will ask  
 * multisig config creation path
 * shared secret password (used for authentication when connecting to other parties)
-* M and N to use
+* M to use (number of parties required to sign for spending)
+* N to use (number of total parties)
 * other parties wallet names and onion+port identifiers
 ```
 ./p2p/binaries/config-create
